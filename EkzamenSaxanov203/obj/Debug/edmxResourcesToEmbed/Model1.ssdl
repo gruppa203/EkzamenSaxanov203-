@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Bd_SaxanovModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Kategorii">
+    <Key>
+      <PropertyRef Name="Kod_Kategorii" />
+    </Key>
+    <Property Name="Kod_Kategorii" Type="int" Nullable="false" />
+    <Property Name="Nazvanie_Kategorii" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Pastovshik">
+    <Key>
+      <PropertyRef Name="Kod_Postavshika" />
+    </Key>
+    <Property Name="Kod_Postavshika" Type="int" Nullable="false" />
+    <Property Name="Naimenovanie_pastovshika" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Proizvoditel">
+    <Key>
+      <PropertyRef Name="Kod_Proizvod" />
+    </Key>
+    <Property Name="Kod_Proizvod" Type="int" Nullable="false" />
+    <Property Name="Naimenovanie_Proizvod" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Kod_Role" />
+    </Key>
+    <Property Name="Kod_Role" Type="int" Nullable="false" />
+    <Property Name="Naimenovanie_Role" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tovar">
+    <Key>
+      <PropertyRef Name="Artikul" />
+    </Key>
+    <Property Name="Artikul" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="Naimenovanie_Tovar" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ed_izm_Tovar" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Stoimost_Tovar" Type="money" Nullable="false" />
+    <Property Name="Maks_Skidka_Tovar" Type="int" Nullable="false" />
+    <Property Name="Proizvoditel_Tovar" Type="int" Nullable="false" />
+    <Property Name="Postavshik_Tovar" Type="int" Nullable="false" />
+    <Property Name="Kategorii_Tovar" Type="int" Nullable="false" />
+    <Property Name="Deistv_Tovar" Type="float" Nullable="false" />
+    <Property Name="Kol_Vo_Tovar" Type="int" Nullable="false" />
+    <Property Name="Opisanie_Tovar" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Izobrajenie_Tovar" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Kod_User" />
+    </Key>
+    <Property Name="Kod_User" Type="int" Nullable="false" />
+    <Property Name="Familia_User" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Imia_User" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Otchestvo_User" Type="varchar" MaxLength="30" />
+    <Property Name="Login_User" Type="varchar" MaxLength="14" Nullable="false" />
+    <Property Name="Parol_User" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="Role_User" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Tovar_Kategorii">
+    <End Role="Kategorii" Type="Self.Kategorii" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategorii">
+        <PropertyRef Name="Kod_Kategorii" />
+      </Principal>
+      <Dependent Role="Tovar">
+        <PropertyRef Name="Kategorii_Tovar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tovar_Pastovshik">
+    <End Role="Pastovshik" Type="Self.Pastovshik" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pastovshik">
+        <PropertyRef Name="Kod_Postavshika" />
+      </Principal>
+      <Dependent Role="Tovar">
+        <PropertyRef Name="Postavshik_Tovar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tovar_Proizvoditel">
+    <End Role="Proizvoditel" Type="Self.Proizvoditel" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proizvoditel">
+        <PropertyRef Name="Kod_Proizvod" />
+      </Principal>
+      <Dependent Role="Tovar">
+        <PropertyRef Name="Proizvoditel_Tovar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Kod_Role" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Role_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище Bd_SaxanovModelContainer">
+    <EntitySet Name="Kategorii" EntityType="Self.Kategorii" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pastovshik" EntityType="Self.Pastovshik" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proizvoditel" EntityType="Self.Proizvoditel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tovar" EntityType="Self.Tovar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Tovar_Kategorii" Association="Self.FK_Tovar_Kategorii">
+      <End Role="Kategorii" EntitySet="Kategorii" />
+      <End Role="Tovar" EntitySet="Tovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tovar_Pastovshik" Association="Self.FK_Tovar_Pastovshik">
+      <End Role="Pastovshik" EntitySet="Pastovshik" />
+      <End Role="Tovar" EntitySet="Tovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tovar_Proizvoditel" Association="Self.FK_Tovar_Proizvoditel">
+      <End Role="Proizvoditel" EntitySet="Proizvoditel" />
+      <End Role="Tovar" EntitySet="Tovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

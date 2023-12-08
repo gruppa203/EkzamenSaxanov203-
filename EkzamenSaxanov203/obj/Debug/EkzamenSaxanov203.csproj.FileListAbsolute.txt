@@ -1,0 +1,8 @@
+D:\Ekz_Saxanov_203\EkzamenSaxanov203\EkzamenSaxanov203\obj\Debug\EkzamenSaxanov203.csproj.AssemblyReference.cache
+D:\Ekz_Saxanov_203\EkzamenSaxanov203\EkzamenSaxanov203\obj\Debug\MainWindow.g.cs
+D:\Ekz_Saxanov_203\EkzamenSaxanov203\EkzamenSaxanov203\obj\Debug\Pages\Kategorii.g.cs
+D:\Ekz_Saxanov_203\EkzamenSaxanov203\EkzamenSaxanov203\obj\Debug\Pages\Vhod.g.cs
+D:\Ekz_Saxanov_203\EkzamenSaxanov203\EkzamenSaxanov203\obj\Debug\App.g.cs
+D:\Ekz_Saxanov_203\EkzamenSaxanov203\EkzamenSaxanov203\obj\Debug\EkzamenSaxanov203_Content.g.cs
+D:\Ekz_Saxanov_203\EkzamenSaxanov203\EkzamenSaxanov203\obj\Debug\EkzamenSaxanov203_MarkupCompile.cache
+D:\Ekz_Saxanov_203\EkzamenSaxanov203\EkzamenSaxanov203\obj\Debug\EkzamenSaxanov203_MarkupCompile.lref
